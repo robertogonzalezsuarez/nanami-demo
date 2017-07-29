@@ -1,0 +1,54 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+builtins:
+- appstats: on
+
+
+handlers:
+- url: /_ah/spi/.*
+  script: app.application
+  secure: always
+
+- url: /tasks/.*
+  script: tasks.APP
+  secure: always
+
+
+libraries:
+- name: endpoints
+  version: latest
+
+- name: webapp2
+  version: "2.5.2"
+
+- name: pycrypto
+  version: latest
+
+skip_files:
+- ^(.*/)?\.zip$
+- ^(.*/)?\.bat$
+- ^(.*/)?\.sh$
+- ^(.*/)?\.md$
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?tests$
+- ^(.*/)?test$
+- ^(.*/)grunt\.js
+#- ^(.*/)node_modules/(.*/)?
+- ^(.*)/node_modules/(?!(bootstrap|systemjs|core-js|zone\.js|reflect-metadata|tether|angular2-fontawesome|font-awesome))(.*)
+#- ^(.*/)bower_components/(.*/)?
+- ^scripts/(.*/)?
+- ^test/(.*/)?
+- ^README\..*
+- \.gitignore
+- ^\.git/.*
+- \.*\.lint$
+- ^fabfile\.py
+- ^testrunner\.py
